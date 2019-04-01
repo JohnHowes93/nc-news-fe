@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Router, Link } from '@reach/router';
+import ArticlesTable from './components/ArticlesTable';
+import TopicsTable from './components/TopicsTable';
+import ArticlesByTopicTable from './components/ArticlesByTopicTable';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>NC News</h1>
+        <Link to="/">
+          <h1>NC News</h1>
+        </Link>
         <form>
           <input
             type="text"
@@ -14,6 +20,11 @@ class App extends Component {
           />
         </form>
         <h2> log in</h2>
+        <Router>
+          <ArticlesTable path="/" />
+          <TopicsTable path="topics" />
+          <ArticlesByTopicTable path="topics/:topic" />
+        </Router>
       </div>
     );
   }
