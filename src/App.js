@@ -8,6 +8,9 @@ import ViewArticle from './components/ViewArticle';
 import PostNewArticle from './components/ArticleAdder';
 
 class App extends Component {
+  state = {
+    globalSearch: ''
+  };
   render() {
     return (
       <div className="App">
@@ -18,7 +21,8 @@ class App extends Component {
           <input
             type="text"
             name="globalsearch"
-            value="search articles, topics, users"
+            value={this.state.globalSearch}
+            onChange={this.handleChange}
           />
         </form>
         <h2> log in</h2>
@@ -33,6 +37,9 @@ class App extends Component {
       </div>
     );
   }
+  handleChange = event => {
+    this.setState({ globalSearch: event.target.value });
+  };
 }
 
 export default App;
