@@ -87,12 +87,12 @@ class ArticleAdder extends Component {
 
   handleSubmit() {
     const { title, body, article_id } = this.state;
-    const postBody = {
-      title,
-      body,
-      author: 'tickle122',
-      topic: 'coding'
-    };
+    // const postBody = {
+    //   title,
+    //   body,
+    //   author: 'tickle122',
+    //   topic: 'coding'
+    // };
     navigate(`/articles/${article_id}`, { state: { isNewFromUser: true } });
   }
 }

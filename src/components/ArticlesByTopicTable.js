@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import { Link } from '@reach/router';
 
 const ArticlesByTopicTable = props => {
   console.log(props);

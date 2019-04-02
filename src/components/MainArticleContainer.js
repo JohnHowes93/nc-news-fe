@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
+const { getArticleById } = require('../api');
 
 class MainArticleContainer extends Component {
   state = {
-    article: {
-      author: 'jessjelly',
-      title: 'Running a Node App',
-      article_id: 1,
-      topic: 'coding',
-      created_at: '2016-08-18T12:07:52.389Z',
-      votes: 0,
-      body:
-        'This is part two of a series on how to get up and running with Systemd and Node.js. This part dives deeper into how to successfully run your app with systemd long-term, and how to set it up in a production environment.',
-      comment_count: '8'
-    }
+    article: {}
   };
+  componentDidMount() {
+    getArticleById(this.props.article_id).then(article => {
+      this.setState({ article });
+    });
+  }
   render() {
     const { article } = this.state;
+    console.log(article);
     return (
       <div>
         <header>
