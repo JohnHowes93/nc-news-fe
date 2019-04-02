@@ -10,7 +10,6 @@ class ArticleAdder extends Component {
     body: 'Article Body',
     article_id: '',
     topicToBeCreated: 'New Topic Title',
-    currentTopic: 'coding',
     allTopics: [
       {
         slug: 'coding',
@@ -32,7 +31,6 @@ class ArticleAdder extends Component {
       selectedOption,
       title,
       body,
-      currentTopic,
       allTopics,
       topicToBeCreated
     } = this.state;
@@ -57,7 +55,7 @@ class ArticleAdder extends Component {
               />
             </div>
           ) : (
-            <div />
+            <div>{`${selectedOption}`}</div>
           )}
 
           <div>
