@@ -16,7 +16,6 @@ export const getCommentsById = articleId => {
       `https://nc-news-john-howes.herokuapp.com/api/articles/${articleId}/comments`
     )
     .then(function(response) {
-      console.log(response);
       return response.data.comments;
     })
     .catch(function(error) {

@@ -14,7 +14,7 @@ class CommentContainer extends Component {
     const { comments } = this.state;
     return comments.map(comment => {
       return (
-        <div>
+        <div key={comment.comment_id}>
           <header>
             <h4>{comment.author}</h4>
             <h5> {comment.created_at}</h5>
