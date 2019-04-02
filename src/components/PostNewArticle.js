@@ -6,36 +6,36 @@ import createSearchOptions from '../utils/postNewArticleUtils';
 class PostNewArticle extends Component {
   state = {
     selectedOption: 'newTopic',
-    userInput: {
-      title: 'Article Title',
-      body: 'Article Body'
-    },
-    topics: {
-      topicToBeCreated: 'New Topic Title',
-      currentTopic: 'coding',
-      allTopics: [
-        {
-          slug: 'coding',
-          description: 'Code is love, code is life'
-        },
-        {
-          slug: 'football',
-          description: 'FOOTIE!'
-        },
-        {
-          slug: 'cooking',
-          description: 'Hey good looking, what you got cooking?'
-        }
-      ]
-    }
+    title: 'Article Title',
+    body: 'Article Body',
+    article_id: '',
+    topicToBeCreated: 'New Topic Title',
+    currentTopic: 'coding',
+    allTopics: [
+      {
+        slug: 'coding',
+        description: 'Code is love, code is life'
+      },
+      {
+        slug: 'football',
+        description: 'FOOTIE!'
+      },
+      {
+        slug: 'cooking',
+        description: 'Hey good looking, what you got cooking?'
+      }
+    ]
   };
-  handleChange = selectedOption => {
-    this.setState({ selectedOption });
-  };
+
   render() {
-    const { selectedOption } = this.state;
-    const { title, body } = this.state.userInput;
-    const { currentTopic, allTopics, topicToBeCreated } = this.state.topics;
+    const {
+      selectedOption,
+      title,
+      body,
+      currentTopic,
+      allTopics,
+      topicToBeCreated
+    } = this.state;
 
     return (
       <div>
@@ -43,29 +43,34 @@ class PostNewArticle extends Component {
           <div>
             <Select
               value={selectedOption}
-              onChange={this.handleChange}
+              onChange={this.handleTopicChange}
               options={createSearchOptions(allTopics)}
             />
           </div>
-          {selectedOption === 'newTopic' && (
+          {selectedOption === 'newTopic' ? (
             <div>
               <input
+                name="topicToBeCreated"
                 value={topicToBeCreated}
-                onChange={e => this.handleChange('title', e.target.value)}
+                onChange={e => this.handleInputChange(e)}
               />
             </div>
+          ) : (
+            <div />
           )}
 
           <div>
             <input
+              name="title"
               value={title}
-              onChange={e => this.handleChange('title', e.target.value)}
+              onChange={e => this.handleInputChange(e)}
             />
           </div>
           <div>
             <textarea
+              name="body"
               value={body}
-              onChange={e => this.handleChange('body', e.target.value)}
+              onChange={e => this.handleInputChange(e)}
             />
           </div>
           <input type="submit" />
@@ -73,9 +78,14 @@ class PostNewArticle extends Component {
       </div>
     );
   }
-  handleChange(e) {
-    e.preventDefault();
-  }
+  handleInputChange = event => {
+    event.preventDefault();
+    this.setState({ [event.target.name]: event.target.value });
+  };
+  handleTopicChange = selectedOption => {
+    this.setState({ selectedOption: selectedOption.value });
+  };
+
   handleSubmit() {
     const { title, body, article_id } = this.state;
     const postBody = {
