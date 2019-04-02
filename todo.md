@@ -50,3 +50,12 @@ Outline functionality of your app
 - Create and .css files
 - Write application CSS - sitewide styling choices like fonts, colour pallettes
 - Write component specific CSS
+
+## WEDNESDAY
+
+- Convert all table data into links
+  - ArticlesByTopicTable
+  - ArticlesTable
+  - TopicsTable
+- Convert all article & comment data into links
+- Begin work on ArticleAdder
