@@ -22,3 +22,14 @@ export const getCommentsById = articleId => {
       console.log(error);
     });
 };
+
+export const getArrayOfArticles = (author, topic, sort_by, order, limit, p) => {
+  return axios
+    .get(`https://nc-news-john-howes.herokuapp.com/api/articles/`)
+    .then(function(response) {
+      return response.data.articles;
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+};
