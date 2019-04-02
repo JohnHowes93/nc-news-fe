@@ -3,6 +3,7 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import { Link } from '@reach/router';
 import MainArticleContainer from './MainArticleContainer';
+import CommentContainer from './CommentContainer';
 
 class ViewArticle extends Component {
   state = {
@@ -93,6 +94,7 @@ class ViewArticle extends Component {
     return (
       <div>
         <MainArticleContainer article={this.state.article} />
+        <CommentContainer comments={this.state.comments} />
       </div>
     );
   }
