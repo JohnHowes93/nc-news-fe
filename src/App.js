@@ -4,6 +4,8 @@ import { Router, Link } from '@reach/router';
 import ArticlesTable from './components/ArticlesTable';
 import TopicsTable from './components/TopicsTable';
 import ArticlesByTopicTable from './components/ArticlesByTopicTable';
+import ViewArticle from './components/ViewArticle';
+import PostNewArticle from './components/PostNewArticle';
 
 class App extends Component {
   render() {
@@ -25,6 +27,8 @@ class App extends Component {
           <ArticlesTable path="/articles" />
           <TopicsTable path="topics" />
           <ArticlesByTopicTable path="topics/:topic" />
+          <ViewArticle path="articles/:article_id" />
+          <PostNewArticle path="articles/create" />
         </Router>
       </div>
     );
