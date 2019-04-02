@@ -32,6 +32,8 @@ Outline functionality of your app
 - Write static render methods with mock data
 - Add expected propTypes (adapt this as necessary)
 
+- Make static page for single article and comments
+
 ## Dynamic (order may be a bit looser here!)
 
 - Create .api file
