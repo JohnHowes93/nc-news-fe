@@ -8,7 +8,7 @@ const ViewArticle = props => {
   return (
     <div>
       <MainArticleContainer article_id={props.article_id} />
-      <CommentContainer comments={props.article_id} />
+      <CommentContainer article_id={props.article_id} />
     </div>
   );
 };
