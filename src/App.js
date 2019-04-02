@@ -22,6 +22,7 @@ class App extends Component {
         <h2> log in</h2>
         <Router>
           <ArticlesTable path="/" />
+          <ArticlesTable path="/articles" />
           <TopicsTable path="topics" />
           <ArticlesByTopicTable path="topics/:topic" />
         </Router>
