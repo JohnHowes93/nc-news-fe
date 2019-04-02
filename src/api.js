@@ -48,3 +48,14 @@ export const getArrayOfArticlesByTopic = params => {
       console.log(error);
     });
 };
+
+export const getTopics = () => {
+  return axios
+    .get('https://nc-news-john-howes.herokuapp.com/api/topics/')
+    .then(function(response) {
+      return response.data.fetchedTopics;
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+};

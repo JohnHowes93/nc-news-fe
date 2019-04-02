@@ -1,39 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import { getTopics } from '../api';
 
-const TopicsTable = props => {
-  const data = [
-    {
-      slug: 'coding',
-      description: 'Code is love, code is life'
-    },
-    {
-      slug: 'football',
-      description: 'FOOTIE!'
-    },
-    {
-      slug: 'cooking',
-      description: 'Hey good looking, what you got cooking?'
-    }
-  ];
-  const columns = [
-    {
-      Header: 'Title',
-      accessor: 'slug'
-    },
-    {
-      Header: 'Description',
-      accessor: 'description'
-    }
-  ];
-
-  return (
-    <div>
-      <h4>topics</h4>
-      <ReactTable data={data} columns={columns} />
-    </div>
-  );
-};
+class TopicsTable extends Component {
+  state = {
+    data: [],
+    columns: [
+      {
+        Header: 'Title',
+        accessor: 'slug'
+      },
+      {
+        Header: 'Description',
+        accessor: 'description'
+      }
+    ]
+  };
+  componentDidMount() {
+    getTopics().then(topics => {
+      this.setState({ data: topics });
+    });
+  }
+  render() {
+    return (
+      <div>
+        <h4>topics</h4>
+        <ReactTable data={this.state.data} columns={this.state.columns} />
+      </div>
+    );
+  }
+}
 
 export default TopicsTable;
