@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { navigate } from '@reach/router';
 import Select from 'react-select';
-import createSearchOptions from '../utils/postNewArticleUtils';
+import createSearchOptions from '../utils/ArticleAdderUtils';
 
-class PostNewArticle extends Component {
+class ArticleAdder extends Component {
   state = {
     selectedOption: 'newTopic',
     title: 'Article Title',
@@ -42,6 +42,7 @@ class PostNewArticle extends Component {
         <form>
           <div>
             <Select
+              name="topicSelect"
               value={selectedOption}
               onChange={this.handleTopicChange}
               options={createSearchOptions(allTopics)}
@@ -52,7 +53,7 @@ class PostNewArticle extends Component {
               <input
                 name="topicToBeCreated"
                 value={topicToBeCreated}
-                onChange={e => this.handleInputChange(e)}
+                onChange={this.handleInputChange}
               />
             </div>
           ) : (
@@ -63,14 +64,14 @@ class PostNewArticle extends Component {
             <input
               name="title"
               value={title}
-              onChange={e => this.handleInputChange(e)}
+              onChange={this.handleInputChange}
             />
           </div>
           <div>
             <textarea
               name="body"
               value={body}
-              onChange={e => this.handleInputChange(e)}
+              onChange={this.handleInputChange}
             />
           </div>
           <input type="submit" />
@@ -98,4 +99,4 @@ class PostNewArticle extends Component {
   }
 }
 
-export default PostNewArticle;
+export default ArticleAdder;

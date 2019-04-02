@@ -4,7 +4,7 @@ import 'react-table/react-table.css';
 import { Link } from '@reach/router';
 import MainArticleContainer from './MainArticleContainer';
 import CommentContainer from './CommentContainer';
-
+// stop being a class
 class ViewArticle extends Component {
   state = {
     article: {

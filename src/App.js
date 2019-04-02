@@ -5,7 +5,7 @@ import ArticlesTable from './components/ArticlesTable';
 import TopicsTable from './components/TopicsTable';
 import ArticlesByTopicTable from './components/ArticlesByTopicTable';
 import ViewArticle from './components/ViewArticle';
-import PostNewArticle from './components/PostNewArticle';
+import PostNewArticle from './components/ArticleAdder';
 
 class App extends Component {
   render() {
