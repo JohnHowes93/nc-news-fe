@@ -15,7 +15,6 @@ class App extends Component {
   };
   render() {
     const { user } = this.state;
-    console.log(user);
     return (
       <div className="App">
         <Link to="/">
@@ -41,7 +40,7 @@ class App extends Component {
           {user ? (
             <Link to={`/users/${user}`}>{user}</Link>
           ) : (
-            <LoginForm setUser={this.setUser} />
+            <LoginForm setUser={this.setUser} user={this.state.user} />
           )}
         </h2>
 
