@@ -7,10 +7,6 @@
 
 ### 'Must Have' User Stories
 
-5. As a user, I should be able to sort articles by:
-   - date created
-   - comment_count
-   - votes
 6. As a hiring partner with no access to my laptop, I should be able to use the site on my mobile without sacrificing style or functionality.
 7. As a logged in user, I should be able to post a new article to a new topic.
 8. As a logged in user, I should be able to delete my own articles.
