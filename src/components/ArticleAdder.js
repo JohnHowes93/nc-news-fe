@@ -6,6 +6,7 @@ import { postArticle, getTopics } from '../api';
 
 class ArticleAdder extends Component {
   state = {
+    topicText: '',
     selectedOption: null,
     title: 'article title',
     body: 'article body',
@@ -21,23 +22,18 @@ class ArticleAdder extends Component {
   render() {
     const { selectedOption, title, body, topics } = this.state;
     // make this delete default input value on click
-
     return (
       <div>
-        <form onSubmit={this.handleTopicSubmit}>
-          <div>
-            <CreatableSelect
-              name="topicSelect"
-              value={selectedOption}
-              onChange={this.handleTopicChange}
-              onInputChange={this.handleTopicInputChange}
-              options={createSearchOptions(topics)}
-              isClearable
-              defaultInputValue="topic"
-              defaultValue=""
-            />
-          </div>
-        </form>
+        <div>
+          <CreatableSelect
+            name="topicSelect"
+            value={selectedOption}
+            onChange={this.handleTopicChange}
+            onInputChange={this.handleTopicInputChange}
+            options={createSearchOptions(topics)}
+            isDisabled={selectedOption !== null}
+          />
+        </div>
         <form onSubmit={this.handleSubmit}>
           <div>
             <input
@@ -66,13 +62,6 @@ class ArticleAdder extends Component {
     if (inputValue) {
       this.setState({ selectedOption: inputValue.value });
     }
-  };
-  handleTopicInputChange = (inputValue, actionMeta) => {
-    this.setState({ selectedOption: inputValue.value });
-  };
-  handleTopicSubmit = event => {
-    event.preventDefault();
-    this.setState({ selectedOption: event.target.value });
   };
   handleSubmit = event => {
     event.preventDefault();

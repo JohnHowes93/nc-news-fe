@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { voteOnArticle } from '../api';
 const { getArticleById } = require('../api');
 
 class MainArticleContainer extends Component {
@@ -10,6 +11,14 @@ class MainArticleContainer extends Component {
       this.setState({ article });
     });
   }
+  handleOnClick = event => {
+    const postBody = {
+      inc_votes: Number(event.currentTarget.value)
+    };
+    voteOnArticle(postBody, event.currentTarget.name).then(article => {
+      this.setState({ article });
+    });
+  };
   render() {
     const { article } = this.state;
     return (
@@ -23,6 +32,30 @@ class MainArticleContainer extends Component {
         <article>
           <p>{article.body}</p>
         </article>
+        <div className="actions">
+          <button
+            type="button"
+            value="1"
+            name={article.article_id}
+            onClick={this.handleOnClick}
+          >
+            <span role="img" aria-label="thumbs up">
+              👍
+            </span>
+          </button>
+          <h4>{article.votes}</h4>
+
+          <button
+            type="button"
+            value="-1"
+            name={article.article_id}
+            onClick={this.handleOnClick}
+          >
+            <span role="img" aria-label="thumbs down">
+              👎
+            </span>
+          </button>
+        </div>
       </div>
     );
   }
