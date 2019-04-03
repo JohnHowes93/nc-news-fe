@@ -1,64 +1,44 @@
 import React, { Component } from 'react';
 import { navigate } from '@reach/router';
-import Select from 'react-select';
+import CreatableSelect from 'react-select/lib/Creatable';
 import createSearchOptions from '../utils/ArticleAdderUtils';
-import { postArticle } from '../api';
+import { postArticle, getTopics } from '../api';
 
 class ArticleAdder extends Component {
   state = {
-    selectedOption: 'newTopic',
-    title: 'Article Title',
-    body: 'Article Body',
+    selectedOption: null,
+    title: 'article title',
+    body: 'article body',
     article_id: '',
-    topicToBeCreated: 'New Topic Title',
-    allTopics: [
-      {
-        slug: 'coding',
-        description: 'Code is love, code is life'
-      },
-      {
-        slug: 'football',
-        description: 'FOOTIE!'
-      },
-      {
-        slug: 'cooking',
-        description: 'Hey good looking, what you got cooking?'
-      }
-    ]
+    topics: []
   };
+  componentDidMount() {
+    getTopics().then(topics => {
+      this.setState({ topics: topics });
+    });
+  }
 
   render() {
-    const {
-      selectedOption,
-      title,
-      body,
-      allTopics,
-      topicToBeCreated
-    } = this.state;
+    const { selectedOption, title, body, topics } = this.state;
+    // make this delete default input value on click
 
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleTopicSubmit}>
           <div>
-            <Select
+            <CreatableSelect
               name="topicSelect"
               value={selectedOption}
               onChange={this.handleTopicChange}
-              options={createSearchOptions(allTopics)}
+              onInputChange={this.handleTopicInputChange}
+              options={createSearchOptions(topics)}
+              isClearable
+              defaultInputValue="topic"
+              defaultValue=""
             />
           </div>
-          {selectedOption === 'newTopic' ? (
-            <div>
-              <input
-                name="topicToBeCreated"
-                value={topicToBeCreated}
-                onChange={this.handleInputChange}
-              />
-            </div>
-          ) : (
-            <div>{`${selectedOption}`}</div>
-          )}
-
+        </form>
+        <form onSubmit={this.handleSubmit}>
           <div>
             <input
               name="title"
@@ -82,18 +62,27 @@ class ArticleAdder extends Component {
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value });
   };
-  handleTopicChange = selectedOption => {
-    this.setState({ selectedOption: selectedOption.value });
+  handleTopicChange = (inputValue, actionMeta) => {
+    if (inputValue) {
+      this.setState({ selectedOption: inputValue.value });
+    }
   };
-
+  handleTopicInputChange = (inputValue, actionMeta) => {
+    this.setState({ selectedOption: inputValue.value });
+  };
+  handleTopicSubmit = event => {
+    event.preventDefault();
+    this.setState({ selectedOption: event.target.value });
+  };
   handleSubmit = event => {
     event.preventDefault();
-    const { title, body, article_id } = this.state;
+    const { title, body, selectedOption } = this.state;
+    const { user } = this.props;
     const postBody = {
       title,
       body,
-      author: 'tickle122',
-      topic: 'coding'
+      author: user,
+      topic: selectedOption
     };
     postArticle(postBody).then(article => {
       navigate(`/articles/${article.article_id}`, {
