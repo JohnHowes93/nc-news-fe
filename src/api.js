@@ -11,6 +11,7 @@ export const getArticleById = articleId => {
       console.log(error);
     });
 };
+
 export const getCommentsById = articleId => {
   return axios
     .get(`${baseUrl}articles/${articleId}/comments`)
@@ -22,16 +23,32 @@ export const getCommentsById = articleId => {
     });
 };
 
-export const getArrayOfArticles = () => {
-  return axios
-    .get(`${baseUrl}articles/`)
+export const getArrayOfArticles = (params = null) => {
+  console.log('params', params);
+  return axios({
+    url: 'https://nc-news-john-howes.herokuapp.com/api/articles',
+    method: 'get',
+    params: {
+      sort_by: params
+    }
+  })
     .then(function(response) {
+      console.log(response);
       return response.data.articles;
     })
     .catch(function(error) {
       console.log(error);
     });
 };
+
+// change axios to
+// axios({
+//   method:
+//   path:
+//   params: {
+//     page
+//   }
+// })
 
 export const getArrayOfArticlesByTopic = params => {
   const { topic } = params;
@@ -86,12 +103,3 @@ export const voteOnArticle = (postBody, article_id) => {
       return returnedArticle.data.article;
     });
 };
-
-// change axios to
-// axios({
-//   method:
-//   path:
-//   params: {
-//     page
-//   }
-// })
