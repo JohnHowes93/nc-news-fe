@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import { getArrayOfArticlesByTopic } from '../api';
+import { formatArticleTable } from '../utils/TableFormattingUtils';
 
 class ArticlesByTopicTable extends Component {
   state = {
@@ -29,10 +30,11 @@ class ArticlesByTopicTable extends Component {
 
   render() {
     const { data, columns } = this.state;
+    const formattedData = formatArticleTable(data);
     return (
       <div>
         <h4>{this.props.topic}</h4>
-        <ReactTable data={data} columns={columns} />
+        <ReactTable data={formattedData} columns={columns} />
       </div>
     );
   }

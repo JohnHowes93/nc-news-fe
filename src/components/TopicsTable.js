@@ -23,10 +23,11 @@ class TopicsTable extends Component {
     });
   }
   render() {
+    const { data, columns } = this.state;
     return (
       <div>
         <h4>topics</h4>
-        <ReactTable data={this.state.data} columns={this.state.columns} />
+        <ReactTable data={data} columns={columns} />
       </div>
     );
   }
