@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { navigate } from '@reach/router';
 import Select from 'react-select';
 import createSearchOptions from '../utils/ArticleAdderUtils';
+import { postArticle } from '../api';
 
 class ArticleAdder extends Component {
   state = {
@@ -37,7 +38,7 @@ class ArticleAdder extends Component {
 
     return (
       <div>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div>
             <Select
               name="topicSelect"
@@ -85,7 +86,8 @@ class ArticleAdder extends Component {
     this.setState({ selectedOption: selectedOption.value });
   };
 
-  handleSubmit() {
+  handleSubmit = event => {
+    event.preventDefault();
     const { title, body, article_id } = this.state;
     const postBody = {
       title,
@@ -93,10 +95,12 @@ class ArticleAdder extends Component {
       author: 'tickle122',
       topic: 'coding'
     };
-    console.log(postBody);
-
-    navigate(`/articles/${article_id}`, { state: { isNewFromUser: true } });
-  }
+    postArticle(postBody).then(article => {
+      navigate(`/articles/${article.article_id}`, {
+        state: { isNewFromUser: true }
+      });
+    });
+  };
 }
 
 export default ArticleAdder;
