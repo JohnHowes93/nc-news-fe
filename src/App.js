@@ -50,7 +50,7 @@ class App extends Component {
           <TopicsTable path="topics" />
           <ArticlesByTopicTable path="topics/:topic" />
           <ViewArticle path="articles/:article_id" user={user} />
-          <PostNewArticle path="articles/create" />
+          <PostNewArticle path="articles/create" user={user} />
         </Router>
       </div>
     );
