@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { commentDisplayer } from '../utils/CommentContainerUtils';
+import CommentAdder from './CommentAdder';
 const { getCommentsById } = require('../api');
 
 class CommentContainer extends Component {
@@ -13,22 +15,21 @@ class CommentContainer extends Component {
 
   render() {
     const { comments } = this.state;
+    const { user, article_id } = this.props;
     let commentDisplay = <p>no comments to display</p>;
+    let addComment = <p>log in to comment</p>;
     if (comments) {
-      commentDisplay = comments.map(comment => {
-        return (
-          <div key={comment.comment_id}>
-            <header>
-              <h4>{comment.author}</h4>
-              <h5> {comment.created_at}</h5>
-              <h6>{comment.votes}</h6>
-            </header>
-            <article>{comment.body}</article>
-          </div>
-        );
-      });
+      commentDisplay = commentDisplayer(comments);
     }
-    return <div>{commentDisplay}</div>;
+    if (user) {
+      addComment = <CommentAdder user={user} article_id={article_id} />;
+    }
+    return (
+      <div>
+        <div>{commentDisplay}</div>
+        <div> {addComment}</div>
+      </div>
+    );
   }
 }
 

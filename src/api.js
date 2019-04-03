@@ -63,6 +63,14 @@ export const postArticle = postBody => {
   });
 };
 
+export const postComment = (postBody, article_id) => {
+  return axios
+    .post(`${baseUrl}articles/${article_id}/comments`, postBody)
+    .then(returnedComment => {
+      return returnedComment.data.comment;
+    });
+};
+
 // change axios to
 // axios({
 //   method:

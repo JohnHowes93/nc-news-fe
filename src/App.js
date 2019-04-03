@@ -49,7 +49,7 @@ class App extends Component {
           <ArticlesTable path="/articles" />
           <TopicsTable path="topics" />
           <ArticlesByTopicTable path="topics/:topic" />
-          <ViewArticle path="articles/:article_id" />
+          <ViewArticle path="articles/:article_id" user={user} />
           <PostNewArticle path="articles/create" />
         </Router>
       </div>
