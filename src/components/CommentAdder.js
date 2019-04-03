@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { navigate } from '@reach/router';
-import { postArticle, postComment } from '../api';
+import { postComment } from '../api';
 
 class CommentAdder extends Component {
   state = {
