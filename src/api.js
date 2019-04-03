@@ -41,14 +41,6 @@ export const getArrayOfArticles = (params = null) => {
     });
 };
 
-// change axios to
-// axios({
-//   method:
-//   path:
-//   params: {
-//     page
-//   }
-// })
 
 export const getArrayOfArticlesByTopic = params => {
   const { topic } = params;
@@ -93,6 +85,17 @@ export const voteOnComment = (postBody, comment_id) => {
     .patch(`${baseUrl}comments/${comment_id}`, postBody)
     .then(returnedComment => {
       return returnedComment.data.patchedComment.votes;
+<<<<<<< HEAD
+=======
+    });
+};
+
+export const voteOnArticle = (postBody, article_id) => {
+  return axios
+    .patch(`${baseUrl}articles/${article_id}`, postBody)
+    .then(returnedArticle => {
+      return returnedArticle.data.article;
+>>>>>>> 71348fe40b69b410fae337945d87c826b744367a
     });
 };
 
