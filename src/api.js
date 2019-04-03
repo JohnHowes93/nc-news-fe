@@ -71,6 +71,16 @@ export const postComment = (postBody, article_id) => {
     });
 };
 
+export const voteOnComment = (postBody, comment_id) => {
+  console.log(postBody);
+  console.log(comment_id);
+  return axios
+    .patch(`${baseUrl}comments/${comment_id}`, postBody)
+    .then(returnedComment => {
+      return returnedComment.data.comment;
+    });
+};
+
 // change axios to
 // axios({
 //   method:
