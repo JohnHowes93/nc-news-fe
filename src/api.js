@@ -1,8 +1,9 @@
 const axios = require('axios');
+const baseUrl = 'https://nc-news-john-howes.herokuapp.com/api/';
 
 export const getArticleById = articleId => {
   return axios
-    .get(`https://nc-news-john-howes.herokuapp.com/api/articles/${articleId}`)
+    .get(`${baseUrl}articles/${articleId}`)
     .then(function(response) {
       return response.data.article;
     })
@@ -12,9 +13,7 @@ export const getArticleById = articleId => {
 };
 export const getCommentsById = articleId => {
   return axios
-    .get(
-      `https://nc-news-john-howes.herokuapp.com/api/articles/${articleId}/comments`
-    )
+    .get(`${baseUrl}articles/${articleId}/comments`)
     .then(function(response) {
       return response.data.comments;
     })
@@ -25,7 +24,7 @@ export const getCommentsById = articleId => {
 
 export const getArrayOfArticles = () => {
   return axios
-    .get('https://nc-news-john-howes.herokuapp.com/api/articles/')
+    .get(`${baseUrl}articles/`)
     .then(function(response) {
       return response.data.articles;
     })
@@ -38,9 +37,7 @@ export const getArrayOfArticlesByTopic = params => {
   const { topic } = params;
   console.log(topic);
   return axios
-    .get(
-      `https://nc-news-john-howes.herokuapp.com/api/articles/?topic=${topic}`
-    )
+    .get(`${baseUrl}articles/?topic=${topic}`)
     .then(function(response) {
       return response.data.articles;
     })
@@ -51,7 +48,7 @@ export const getArrayOfArticlesByTopic = params => {
 
 export const getTopics = () => {
   return axios
-    .get('https://nc-news-john-howes.herokuapp.com/api/topics/')
+    .get(`${baseUrl}topics/`)
     .then(function(response) {
       return response.data.fetchedTopics;
     })
@@ -59,3 +56,12 @@ export const getTopics = () => {
       console.log(error);
     });
 };
+
+// change axios to
+// axios({
+//   method:
+//   path:
+//   params: {
+//     page
+//   }
+// })
