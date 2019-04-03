@@ -57,6 +57,12 @@ export const getTopics = () => {
     });
 };
 
+export const postArticle = postBody => {
+  return axios.post(`${baseUrl}articles/`, postBody).then(returnedArticle => {
+    return returnedArticle.data.article;
+  });
+};
+
 // change axios to
 // axios({
 //   method:
