@@ -3,7 +3,7 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import { getArrayOfArticles } from '../api';
 import { formatArticleTable } from '../utils/TableFormattingUtils';
-import Select from 'react-select/lib/Creatable';
+import Select from 'react-select';
 
 class ArticlesTable extends Component {
   state = {
