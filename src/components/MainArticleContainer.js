@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { voteOnArticle } from '../api';
 import { navigate } from '@reach/router';
-const { getArticleById } = require('../api');
+const { getArticleById, deleteArticle } = require('../api');
 
 class MainArticleContainer extends Component {
   state = {
-    article: {}
+    article: {},
+    user: ''
   };
   componentDidMount() {
+    console.log(this.props);
+    this.setState({ user: this.props.user });
     getArticleById(this.props.article_id)
       .then(article => {
         this.setState({ article });
@@ -22,8 +25,31 @@ class MainArticleContainer extends Component {
       this.setState({ article });
     });
   };
+  handleDelete = () => {
+    const { article_id } = this.state.article;
+    const { user } = this.state;
+    deleteArticle(article_id).then(article => {
+      navigate(`/users/${user}`);
+    });
+  };
   render() {
-    const { article } = this.state;
+    const { article, user } = this.state;
+    let deleteArticleButton = <div />;
+    if (article.author === user)
+      deleteArticleButton = (
+        <div>
+          <button
+            type="button"
+            value="1"
+            name={article.article_id}
+            onClick={this.handleDelete}
+          >
+            <span role="img" aria-label="delete">
+              Delete This Article
+            </span>
+          </button>
+        </div>
+      );
     return (
       <div>
         <header>
@@ -58,6 +84,7 @@ class MainArticleContainer extends Component {
               👎
             </span>
           </button>
+          {deleteArticleButton}
         </div>
       </div>
     );

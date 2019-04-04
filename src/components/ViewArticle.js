@@ -7,7 +7,7 @@ const ViewArticle = props => {
   const { article_id, user } = props;
   return (
     <div>
-      <MainArticleContainer article_id={article_id} />
+      <MainArticleContainer article_id={article_id} user={user} />
       <CommentContainer article_id={article_id} user={user} />
     </div>
   );

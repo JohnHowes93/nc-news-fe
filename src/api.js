@@ -30,7 +30,6 @@ export const getArrayOfArticles = (params = null) => {
     params
   })
     .then(function(response) {
-      console.log(response);
       return response.data.articles;
     })
     .catch(function(error) {
@@ -90,4 +89,8 @@ export const voteOnArticle = (postBody, article_id) => {
     .then(returnedArticle => {
       return returnedArticle.data.article;
     });
+};
+
+export const deleteArticle = article_id => {
+  return axios.delete(`${baseUrl}articles/${article_id}`);
 };
