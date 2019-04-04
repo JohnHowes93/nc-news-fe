@@ -12,7 +12,7 @@ class CommentContainer extends Component {
     let commentDisplay = <p>no comments to display</p>;
     let addComment = <p>log in to comment</p>;
     if (comments) {
-      commentDisplay = <CommentDisplayer article_id={article_id} />;
+      commentDisplay = <CommentDisplayer article_id={article_id} user={user} />;
     }
     if (user) {
       addComment = <CommentAdder user={user} article_id={article_id} />;

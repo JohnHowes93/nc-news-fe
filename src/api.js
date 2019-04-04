@@ -94,3 +94,7 @@ export const voteOnArticle = (postBody, article_id) => {
 export const deleteArticle = article_id => {
   return axios.delete(`${baseUrl}articles/${article_id}`);
 };
+
+export const deleteComment = comment_id => {
+  return axios.delete(`${baseUrl}comments/${comment_id}`);
+};

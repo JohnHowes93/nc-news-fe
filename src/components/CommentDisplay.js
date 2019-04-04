@@ -1,15 +1,31 @@
 import React, { Component } from 'react';
-import { voteOnComment, getCommentsById } from '../api';
+import { voteOnComment, getCommentsById, deleteComment } from '../api';
+import { navigate } from '@reach/router/lib/history';
 
 class CommentDisplayer extends Component {
   state = {
+    user: '',
     comments: [],
     comment: {}
   };
   render() {
-    const { comments } = this.state;
+    const { comments, user } = this.state;
+    console.log('user', user);
+    let deleteCommentButton = <div />;
     if (comments)
-      return comments.map((comment, i) => {
+      return comments.map(comment => {
+        if (comment.author === user)
+          deleteCommentButton = (
+            <div>
+              <button
+                type="button"
+                onClick={this.handleDelete}
+                value={comment.comment_id}
+              >
+                Delete This Comment
+              </button>
+            </div>
+          );
         return (
           <div key={comment.comment_id}>
             <header>
@@ -40,12 +56,14 @@ class CommentDisplayer extends Component {
                 </span>
               </button>
             </div>
+            {deleteCommentButton}
           </div>
         );
       });
     else return <div />;
   }
   componentDidMount() {
+    this.setState({ user: this.props.user });
     getCommentsById(this.props.article_id).then(comments => {
       this.setState({ comments });
     });
@@ -64,6 +82,11 @@ class CommentDisplayer extends Component {
     };
     voteOnComment(postBody, event.currentTarget.name).then(votes => {
       this.setState({ votes });
+    });
+  };
+  handleDelete = e => {
+    deleteComment(e.target.value).then(() => {
+      navigate(`/articles/${this.props.article_id}`);
     });
   };
 }

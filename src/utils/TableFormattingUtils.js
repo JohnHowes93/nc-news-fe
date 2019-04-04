@@ -3,7 +3,11 @@ import { Link } from '@reach/router';
 const moment = require('moment');
 moment().format();
 
-export const formatArticleTable = article => {
+export const formatArticleTable = articleInput => {
+  let article = [];
+  if (articleInput) {
+    article = articleInput;
+  }
   return article.map(article => {
     const title = (
       <Link to={`/articles/${article.article_id}`}>{article.title}</Link>
