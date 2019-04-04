@@ -8,6 +8,7 @@ import ViewArticle from './components/ViewArticle';
 import PostNewArticle from './components/ArticleAdder';
 import LoginForm from './components/LoginForm';
 import ErrorHandler from './components/ErrorHandler';
+import ViewUser from './components/ViewUser';
 
 class App extends Component {
   state = {
@@ -53,6 +54,7 @@ class App extends Component {
           <ViewArticle path="articles/:article_id" user={user} />
           <PostNewArticle path="articles/create" user={user} />
           <ErrorHandler path="/error" />
+          <ViewUser path="/users/:username" />
         </Router>
       </div>
     );

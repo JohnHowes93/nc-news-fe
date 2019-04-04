@@ -26,13 +26,8 @@ export const getCommentsById = articleId => {
 };
 
 export const getArrayOfArticles = (params = null) => {
-  console.log('params', params);
-  return axios({
-    url: 'https://nc-news-john-howes.herokuapp.com/api/articles',
-    method: 'get',
-    params: {
-      sort_by: params
-    }
+  return axios('https://nc-news-john-howes.herokuapp.com/api/articles', {
+    params
   })
     .then(function(response) {
       console.log(response);
