@@ -5,10 +5,12 @@ export const getArticleById = articleId => {
   return axios
     .get(`${baseUrl}articles/${articleId}`)
     .then(function(response) {
-      return response.data.article;
+      if (response.data.article) {
+        return response.data.article;
+      }
     })
     .catch(function(error) {
-      console.log(error);
+      throw error;
     });
 };
 
