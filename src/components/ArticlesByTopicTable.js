@@ -9,8 +9,16 @@ class ArticlesByTopicTable extends Component {
     data: [],
     columns: [
       {
+        Header: 'Votes',
+        accessor: 'votes'
+      },
+      {
         Header: 'Title',
         accessor: 'title'
+      },
+      {
+        Header: 'Author',
+        accessor: 'author'
       },
       {
         Header: 'Replies',

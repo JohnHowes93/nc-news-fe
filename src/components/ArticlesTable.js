@@ -12,6 +12,10 @@ class ArticlesTable extends Component {
     data: [],
     columns: [
       {
+        Header: 'Votes',
+        accessor: 'votes'
+      },
+      {
         Header: 'Title',
         accessor: 'title'
       },

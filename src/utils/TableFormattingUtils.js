@@ -8,6 +8,9 @@ export const formatArticleTable = article => {
     const title = (
       <Link to={`/articles/${article.article_id}`}>{article.title}</Link>
     );
+    const votes = (
+      <Link to={`/articles/${article.article_id}`}>{article.votes}</Link>
+    );
     const topic = <Link to={`/topics/${article.topic}`}>{article.topic}</Link>;
     const author = (
       <Link to={`/users/${article.author}`}>{article.author}</Link>
@@ -22,6 +25,6 @@ export const formatArticleTable = article => {
         {moment(article.created_at).fromNow()}
       </Link>
     );
-    return { title, topic, author, comment_count, created_at };
+    return { title, topic, author, comment_count, created_at, votes };
   });
 };
