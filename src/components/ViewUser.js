@@ -54,21 +54,7 @@ class ViewUser extends Component {
     // date created / comment_count / votes
     return (
       <div>
-        <div className="tableActions">
-          <label className="sortSwitch">
-            <input type="checkbox" onClick={this.handleSwitch} />
-            Sort Ascending / Descending
-            <span className="slider round" />
-          </label>
-          <Select
-            value={sort_by}
-            onChange={this.handleChange}
-            options={options}
-          />{' '}
-        </div>
-        <div>
-          <ReactTable data={formattedData} columns={columns} />
-        </div>
+        <ReactTable data={formattedData} columns={columns} />
       </div>
     );
   }
