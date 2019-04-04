@@ -32,6 +32,7 @@ class ArticleAdder extends Component {
             onInputChange={this.handleTopicInputChange}
             options={createSearchOptions(topics)}
             isDisabled={selectedOption !== null}
+            required
           />
         </div>
         <form onSubmit={this.handleSubmit}>
@@ -40,6 +41,7 @@ class ArticleAdder extends Component {
               name="title"
               value={title}
               onChange={this.handleInputChange}
+              required
             />
           </div>
           <div>
@@ -47,6 +49,7 @@ class ArticleAdder extends Component {
               name="body"
               value={body}
               onChange={this.handleInputChange}
+              required
             />
           </div>
           <input type="submit" />
