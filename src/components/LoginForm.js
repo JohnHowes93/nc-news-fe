@@ -2,31 +2,20 @@ import React, { Component, Fragment } from 'react';
 
 class LoginForm extends Component {
   state = {
-    username: 'tickle122',
-    newUsername: 'enter a new username'
+    username: 'tickle122'
     // usernameExists: 0
   };
   render() {
-    const { username, newUsername } = this.state;
+    const { username } = this.state;
     return (
       <Fragment>
         <form onSubmit={this.handleExistingUserSubmit}>
-          <p>existing user</p>{' '}
           <input
             name="username"
             onChange={this.handleExistingUserChange}
             value={username}
           />
           <input type="submit" value="login" />
-        </form>
-        <form onSubmit={this.handleNewUserSubmit}>
-          <p>new user</p>{' '}
-          <input
-            name="newUsername"
-            onChange={this.handleNewUserChange}
-            value={newUsername}
-          />
-          <input type="submit" value="register" />
         </form>
       </Fragment>
     );

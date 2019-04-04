@@ -26,7 +26,7 @@ export const getCommentsById = articleId => {
 };
 
 export const getArrayOfArticles = (params = null) => {
-  return axios('https://nc-news-john-howes.herokuapp.com/api/articles', {
+  return axios(`${baseUrl}articles`, {
     params
   })
     .then(function(response) {
@@ -97,4 +97,16 @@ export const deleteArticle = article_id => {
 
 export const deleteComment = comment_id => {
   return axios.delete(`${baseUrl}comments/${comment_id}`);
+};
+
+export const createNewTopic = postBody => {
+  return axios
+    .post(`${baseUrl}topics/`, {
+      slug: postBody.topic,
+      description: postBody.newTopicDescription
+    })
+    .then(returnedTopic => {
+      console.log('returnedTopic', returnedTopic);
+    })
+    .catch(err => console.log('caught error: ', err));
 };
