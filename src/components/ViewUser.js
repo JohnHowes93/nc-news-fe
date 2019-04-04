@@ -3,13 +3,11 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import { getArrayOfArticles } from '../api';
 import { formatArticleTable } from '../utils/TableFormattingUtils';
-import Select from 'react-select/lib/Creatable';
 
 class ViewUser extends Component {
   state = {
     // add page to state
     username: '',
-    sort_by: '',
     data: [],
     columns: [
       {
@@ -33,8 +31,7 @@ class ViewUser extends Component {
         Header: 'Created',
         accessor: 'created_at'
       }
-    ],
-    sort: 1
+    ]
   };
   componentDidMount() {
     const params = { author: this.props.username };
@@ -44,12 +41,7 @@ class ViewUser extends Component {
   }
 
   render() {
-    const options = [
-      { value: 'created_at', label: 'date' },
-      { value: 'comment_count', label: 'replies' },
-      { value: 'votes', label: 'votes' }
-    ];
-    const { data, columns, sort_by } = this.state;
+    const { data, columns } = this.state;
     const formattedData = formatArticleTable(data);
     // date created / comment_count / votes
     return (
@@ -67,13 +59,6 @@ class ViewUser extends Component {
   };
   handleToggle = event => {
     console.log(event.target.value);
-  };
-
-  handleChange = sortBy => {
-    this.setState({ sortBy });
-    getArrayOfArticles(sortBy.value).then(articles => {
-      this.setState({ data: articles });
-    });
   };
 }
 

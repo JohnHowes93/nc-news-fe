@@ -8,7 +8,7 @@ import Select from 'react-select/lib/Creatable';
 class ArticlesTable extends Component {
   state = {
     // add page to state
-    sort_by: '',
+    sort_by: 'votes',
     data: [],
     columns: [
       {
@@ -57,11 +57,6 @@ class ArticlesTable extends Component {
     return (
       <div>
         <div className="tableActions">
-          <label className="sortSwitch">
-            <input type="checkbox" onClick={this.handleSwitch} />
-            Sort Ascending / Descending
-            <span className="slider round" />
-          </label>
           <Select
             value={sort_by}
             onChange={this.handleChange}
@@ -87,7 +82,8 @@ class ArticlesTable extends Component {
 
   handleChange = sortBy => {
     this.setState({ sortBy });
-    getArrayOfArticles(sortBy.value).then(articles => {
+    const params = { sort_by: sortBy.value };
+    getArrayOfArticles(params).then(articles => {
       this.setState({ data: articles });
     });
   };
