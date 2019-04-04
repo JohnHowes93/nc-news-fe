@@ -46,7 +46,6 @@ class CommentAdder extends Component {
       username: author
     };
     postComment(postBody, article_id).then(comment => {
-      console.log(comment);
       navigate(`/articles/${comment.article_id}`, {
         state: { isNewFromUser: true }
       });

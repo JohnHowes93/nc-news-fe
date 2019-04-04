@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { voteOnArticle } from '../api';
+import { navigate } from '@reach/router';
 const { getArticleById } = require('../api');
 
 class MainArticleContainer extends Component {
@@ -7,9 +8,11 @@ class MainArticleContainer extends Component {
     article: {}
   };
   componentDidMount() {
-    getArticleById(this.props.article_id).then(article => {
-      this.setState({ article });
-    });
+    getArticleById(this.props.article_id)
+      .then(article => {
+        this.setState({ article });
+      })
+      .catch(err => navigate('/error', { error: err }));
   }
   handleOnClick = event => {
     const postBody = {

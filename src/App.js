@@ -7,6 +7,7 @@ import ArticlesByTopicTable from './components/ArticlesByTopicTable';
 import ViewArticle from './components/ViewArticle';
 import PostNewArticle from './components/ArticleAdder';
 import LoginForm from './components/LoginForm';
+import ErrorHandler from './components/ErrorHandler';
 
 class App extends Component {
   state = {
@@ -51,6 +52,7 @@ class App extends Component {
           <ArticlesByTopicTable path="topics/:topic" />
           <ViewArticle path="articles/:article_id" user={user} />
           <PostNewArticle path="articles/create" user={user} />
+          <ErrorHandler path="/error" />
         </Router>
       </div>
     );
