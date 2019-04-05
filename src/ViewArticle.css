@@ -1,0 +1,39 @@
+.article {
+  align-items: center;
+  padding: 1vh 1vw;
+  border: 1px solid #f4f4f4;
+}
+
+.article-header {
+  display: grid;
+  background-color: azure;
+  padding: 2vh 2vw;
+  text-align: left;
+  font-weight: bold;
+  grid-template-rows: 75% 25%;
+  grid-template-columns: 60% 20% 20%;
+  border: 1px solid #ebebeb;
+}
+
+.article-header-author {
+  font-weight: bold;
+}
+
+.article-body {
+  padding: 2vh 2vw;
+  background-color: whitesmoke;
+  text-align: left;
+}
+.article-header-created_at {
+  text-align: left;
+  font-weight: normal;
+  font-size: 0.75em;
+}
+
+.actions {
+  justify-content: right;
+  justify-items: right;
+  justify-self: right;
+  text-align: right;
+  border: 1px solid #f4f4f4;
+}

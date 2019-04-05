@@ -26,7 +26,6 @@ class ArticleAdder extends Component {
       title,
       body,
       topics,
-      topicDescription,
       newTopicDescription
     } = this.state;
     const existingTopics = topics.map(topic => {

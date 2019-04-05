@@ -10,7 +10,6 @@ class CommentDisplayer extends Component {
   };
   render() {
     const { comments, user } = this.state;
-    console.log('user', user);
     let deleteCommentButton = <div />;
     if (comments)
       return comments.map(comment => {
@@ -27,11 +26,11 @@ class CommentDisplayer extends Component {
             </div>
           );
         return (
-          <div key={comment.comment_id}>
-            <header>
+          <div key={comment.comment_id} className="singleComment">
+            <div className="article.article-header">
               <h4>{comment.author}</h4>
               <h5> {comment.created_at}</h5>
-            </header>
+            </div>
             <article>{comment.body}</article>
             <div className="actions">
               <button

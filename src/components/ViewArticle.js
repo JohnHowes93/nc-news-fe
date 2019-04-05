@@ -1,6 +1,8 @@
 import React from 'react';
 import 'react-table/react-table.css';
 import MainArticleContainer from './MainArticleContainer';
+import '../ViewArticle.css';
+
 import CommentContainer from './CommentContainer';
 
 const ViewArticle = props => {

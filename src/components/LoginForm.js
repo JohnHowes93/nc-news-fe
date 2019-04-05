@@ -14,6 +14,7 @@ class LoginForm extends Component {
             name="username"
             onChange={this.handleExistingUserChange}
             value={username}
+            className="loginTextBox"
           />
           <input type="submit" value="login" />
         </form>

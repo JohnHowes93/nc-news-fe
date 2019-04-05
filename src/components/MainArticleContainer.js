@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { voteOnArticle } from '../api';
-import { navigate } from '@reach/router';
+import { navigate, Link } from '@reach/router';
+import '../ViewArticle.css';
+
+const moment = require('moment');
+moment().format();
+
 const { getArticleById, deleteArticle } = require('../api');
 
 class MainArticleContainer extends Component {
@@ -51,17 +56,24 @@ class MainArticleContainer extends Component {
         </div>
       );
     return (
-      <div>
-        <header>
-          <h2>{article.title}</h2>
-          <h3>{article.topic}</h3>
-          <h4>{article.author}</h4>
-          <h5>{article.created_at}</h5>
+      <div className="article">
+        <header className="article-header">
+          <span className="article-header-title">{article.title}</span>
+          <span className="article-header-topic">
+            <Link to={`/topics/${article.topic}`}>{article.topic}</Link>
+          </span>
+          <span className="article-header-author">
+            <Link to={`/users/${article.author}`}>{article.author}</Link>
+          </span>
+          <span className="article-header-created_at">
+            Posted {moment(article.created_at).fromNow()}
+          </span>
         </header>
-        <article>
+        <article className="article-body">
           <p>{article.body}</p>
         </article>
         <div className="actions">
+          {article.votes}{' '}
           <button
             type="button"
             value="1"
@@ -72,8 +84,6 @@ class MainArticleContainer extends Component {
               👍
             </span>
           </button>
-          <h4>{article.votes}</h4>
-
           <button
             type="button"
             value="-1"
