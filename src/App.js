@@ -58,9 +58,11 @@ class App extends Component {
             <ErrorHandler path="/error" />
             <ViewUser path="/users/:username" />
           </Router>
-        </div>
-        <div className="readme">
-          <Link to="https://github.com/JohnHowes93/nc-news-fe">github</Link>
+          <div className="readme">
+            <Link to="https://github.com/JohnHowes93/nc-news-fe">
+              github/readme
+            </Link>
+          </div>
         </div>
       </div>
     );
