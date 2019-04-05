@@ -32,7 +32,7 @@ Logged in users can
 
 ### How do I access it?
 
-Visit this link :
+Visit this link : https://nc-news-john-howes.netlify.com/
 
 Or to run the project locally
 
@@ -43,3 +43,5 @@ Or to run the project locally
 ```
 npm start
 ```
+
+For more information on the back end for this project please visit: https://github.com/JohnHowes93/nc-news
