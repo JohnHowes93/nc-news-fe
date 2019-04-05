@@ -72,6 +72,7 @@ class ArticlesTable extends Component {
             value={sort_by}
             onChange={this.handleChange}
             options={options}
+            defaultValue="sort"
           />{' '}
         </div>
         <div>
