@@ -3,17 +3,18 @@ import { navigate } from '@reach/router';
 import CreatableSelect from 'react-select/lib/Creatable';
 import createSearchOptions from '../utils/ArticleAdderUtils';
 import { postArticle, getTopics, createNewTopic } from '../api';
+import '../NewArticle.css';
 
 class ArticleAdder extends Component {
   state = {
     topicText: '',
     selectedOption: undefined,
-    title: 'article title',
-    body: 'article body',
+    title: '',
+    body: '',
     article_id: '',
     topics: [{ slug: '' }],
     topicDescription: 'Topic Description',
-    newTopicDescription: 'describe your new topic'
+    newTopicDescription: ''
   };
   componentDidMount() {
     getTopics().then(topics => {
@@ -34,9 +35,12 @@ class ArticleAdder extends Component {
     let topicInfo = <div />;
     if (selectedOption !== undefined) {
       topicInfo = (
-        <div>
+        <div className="new-topic-description">
           <form onSubmit={this.handleSubmit}>
             <div>
+              <div className="new-topic-description-prompt ">
+                Enter a description for your new topic
+              </div>
               <input
                 name="newTopicDescription"
                 value={newTopicDescription}
@@ -54,32 +58,49 @@ class ArticleAdder extends Component {
     let articleForm = <div />;
     if (selectedOption !== undefined) {
       articleForm = (
-        <div>
+        <div className="new-article-container">
           <form onSubmit={this.handleSubmit}>
-            <div>
-              <input
-                name="title"
-                value={title}
-                onChange={this.handleInputChange}
-                required
-              />
+            <div className="new-article-form-title">
+              <div>Article Title</div>
+              <div>
+                <input
+                  name="title"
+                  value={title}
+                  onChange={this.handleInputChange}
+                  required
+                  cols={20}
+                />
+              </div>
             </div>
-            <div>
+            <div className="new-article-form-body">
+              <div>Article Body</div>
               <textarea
                 name="body"
                 value={body}
                 onChange={this.handleInputChange}
                 required
+                cols={60}
+                rows={3}
               />
             </div>
-            <input type="submit" />
+            <input
+              type="submit"
+              className="new-article-form-submit"
+              value="Post a new article"
+            />
           </form>
         </div>
       );
     }
     return (
-      <div>
-        <div>
+      <div className="new-article">
+        <div className="topic-selector">
+          <div className="topic-text">
+            <p>
+              Select a topic for your post, or start typing to create a new
+              topic
+            </p>
+          </div>
           <CreatableSelect
             name="topicSelect"
             onChange={this.handleTopicChange}
@@ -87,9 +108,11 @@ class ArticleAdder extends Component {
             options={createSearchOptions(topics)}
             required
             isClearable
+            style={{ width: '50%' }}
+            autosize={false}
           />
+          {topicInfo}
         </div>
-        {topicInfo}
         {articleForm}
       </div>
     );

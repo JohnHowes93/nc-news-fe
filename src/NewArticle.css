@@ -1,0 +1,51 @@
+.new-article {
+  align-items: center;
+  padding: 1vh 1vw;
+  border: 1px solid #e7e6e6;
+}
+
+.new-article-container {
+  display: grid;
+  background-color: azure;
+  padding: 2vh 2vw;
+  text-align: left;
+  font-weight: bold;
+  grid-template-rows: 75% 25%;
+  grid-template-columns: 60% 20% 20%;
+  border: 1px solid #ebebeb;
+}
+
+.topic-selector {
+  align-items: center;
+  padding: 1vh;
+  background-color: #f4f4f4;
+}
+.topic-text {
+  text-align: left;
+  font-size: 1em;
+}
+.new-topic-description-prompt {
+  text-align: left;
+  font-size: 1em;
+}
+.new-article-form-title {
+  font-weight: normal;
+  text-align: left;
+  padding: 2vh 0vw;
+}
+
+.new-article-form-body {
+  text-align: left;
+  padding: 2vh 0vw;
+  font-weight: normal;
+}
+
+.new-article-form-submit {
+  padding: 1vh 1vw;
+}
+.new-topic-description {
+  text-align: left;
+  font-weight: normal;
+  font-size: 0.75em;
+  padding: 2vh 0vw;
+}
