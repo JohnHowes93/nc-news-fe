@@ -1,10 +1,10 @@
-.article {
+.single-comment {
   align-items: center;
   padding: 1vh 1vw;
-  border: 1px solid #e7e6e6;
+  border: 1px solid #d0d0d0;
 }
 
-.article-header {
+.comment-header {
   display: grid;
   background-color: azure;
   padding: 2vh 2vw;
@@ -15,20 +15,20 @@
   border: 1px solid #ebebeb;
 }
 
-.article-header-author {
+.comment-author {
   font-weight: bold;
   text-align: center;
 }
-
-.article-body {
-  padding: 2vh 2vw;
-  background-color: #ebeaea;
-  text-align: left;
-}
-.article-header-created_at {
+.comment-created_at {
   text-align: left;
   font-weight: normal;
   font-size: 0.75em;
+}
+
+.comment-body {
+  padding: 2vh 2vw;
+  background-color: whitesmoke;
+  text-align: left;
 }
 
 .actions {
@@ -37,4 +37,5 @@
   justify-self: right;
   text-align: right;
   border: 1px solid #f4f4f4;
+  padding: 1vh 1vw;
 }

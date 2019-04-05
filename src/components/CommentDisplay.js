@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { voteOnComment, getCommentsById, deleteComment } from '../api';
 import { navigate } from '@reach/router/lib/history';
+import '../Comments.css';
+import { Link } from '@reach/router';
+const moment = require('moment');
+moment().format();
 
 class CommentDisplayer extends Component {
   state = {
@@ -26,13 +30,19 @@ class CommentDisplayer extends Component {
             </div>
           );
         return (
-          <div key={comment.comment_id} className="singleComment">
-            <div className="article.article-header">
-              <h4>{comment.author}</h4>
-              <h5> {comment.created_at}</h5>
+          <div key={comment.comment_id} className="single-comment">
+            <div className="comment-header">
+              <span className="comment-created_at">
+                Posted {moment(comment.created_at).fromNow()}
+              </span>
+              <span />
+              <span className="comment-author">
+                <Link to={`/users/${comment.author}`}>{comment.author}</Link>
+              </span>
             </div>
-            <article>{comment.body}</article>
+            <article className="comment-body">{comment.body}</article>
             <div className="actions">
+              {comment.votes}{' '}
               <button
                 type="button"
                 value="1"
@@ -43,7 +53,6 @@ class CommentDisplayer extends Component {
                   👍
                 </span>
               </button>
-              <h6>{comment.votes}</h6>
               <button
                 type="button"
                 value="-1"
