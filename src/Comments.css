@@ -39,3 +39,28 @@
   border: 1px solid #f4f4f4;
   padding: 1vh 1vw;
 }
+
+.new-comment {
+  align-items: center;
+  padding: 1vh 1vw;
+  border: 1px solid #d0d0d0;
+  background-color: whitesmoke;
+}
+
+.new-comment-text {
+  width: 100%;
+  height: 80%;
+  padding: 2vh 2vw;
+  text-align: left;
+}
+
+.new-comment-header {
+  display: grid;
+  background-color: azure;
+  padding: 2vh 2vw;
+  text-align: left;
+  font-weight: bold;
+  grid-template-rows: 75% 25%;
+  grid-template-columns: 60% 20% 20%;
+  border: 1px solid #ebebeb;
+}

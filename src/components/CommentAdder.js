@@ -6,7 +6,7 @@ class CommentAdder extends Component {
   state = {
     article_id: 0,
     author: 0,
-    body: 0
+    body: ''
   };
   componentDidMount() {
     const { article_id, user } = this.props;
@@ -15,17 +15,24 @@ class CommentAdder extends Component {
   render() {
     const { body } = this.state;
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <textarea
-              name="body"
-              value={body}
-              onChange={this.handleInputChange}
-            />
-          </div>
-          <input type="submit" />
-        </form>
+      <div className="new-comment">
+        <div className="new-comment-header">Post a comment</div>
+        <div className="new-comment-text">
+          <form onSubmit={this.handleSubmit}>
+            <span>
+              <textarea
+                name="body"
+                value={body}
+                onChange={this.handleInputChange}
+                rows={10}
+                cols={50}
+              />
+            </span>
+            <div className="new-comment-submit">
+              <input type="submit" value="Submit" />
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
