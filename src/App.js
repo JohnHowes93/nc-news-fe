@@ -9,6 +9,15 @@ import PostNewArticle from './components/ArticleAdder';
 import LoginForm from './components/LoginForm';
 import ErrorHandler from './components/ErrorHandler';
 import ViewUser from './components/ViewUser';
+import { ReactTableDefaults } from 'react-table';
+
+Object.assign(ReactTableDefaults, {
+  defaultPageSize: 20,
+  showPageSizeOptions: false,
+  showPaginationBottom: false,
+  sortable: false,
+  showPageJump: false
+});
 
 class App extends Component {
   state = {

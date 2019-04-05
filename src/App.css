@@ -10,6 +10,22 @@
   font-size: 1em;
   padding: 5vh 5vw;
 }
+a:link {
+  color: #010101;
+}
+a:visited {
+  color: #323232;
+}
+a:hover {
+  color: #828282;
+}
+a:active {
+  color: #010101;
+}
+a:link {
+  text-decoration: none;
+  border-bottom: 0.1px solid black;
+}
 
 .header {
   display: grid;

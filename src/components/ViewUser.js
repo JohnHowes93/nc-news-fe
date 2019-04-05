@@ -11,20 +11,31 @@ class ViewUser extends Component {
     data: [],
     columns: [
       {
-        Header: 'Votes',
-        accessor: 'votes'
+        Header: (
+          <span role="img" aria-label="votes">
+            👍
+          </span>
+        ),
+        accessor: 'votes',
+        maxWidth: 40
       },
       {
         Header: 'Title',
-        accessor: 'title'
+        accessor: 'title',
+        minWidth: 300
       },
       {
         Header: 'Topic',
         accessor: 'topic'
       },
       {
-        Header: 'Replies',
-        accessor: 'comment_count'
+        Header: (
+          <span role="img" aria-label="comments">
+            💬
+          </span>
+        ),
+        accessor: 'comment_count',
+        maxWidth: 40
       },
 
       {

@@ -12,12 +12,18 @@ class ArticlesTable extends Component {
     data: [],
     columns: [
       {
-        Header: 'Votes',
-        accessor: 'votes'
+        Header: (
+          <span role="img" aria-label="votes">
+            👍
+          </span>
+        ),
+        accessor: 'votes',
+        maxWidth: 40
       },
       {
         Header: 'Title',
-        accessor: 'title'
+        accessor: 'title',
+        minWidth: 300
       },
       {
         Header: 'Topic',
@@ -28,8 +34,13 @@ class ArticlesTable extends Component {
         accessor: 'author'
       },
       {
-        Header: 'Replies',
-        accessor: 'comment_count'
+        Header: (
+          <span role="img" aria-label="comments">
+            💬
+          </span>
+        ),
+        accessor: 'comment_count',
+        maxWidth: 40
       },
 
       {
@@ -64,7 +75,11 @@ class ArticlesTable extends Component {
           />{' '}
         </div>
         <div>
-          <ReactTable data={formattedData} columns={columns} />
+          <ReactTable
+            data={formattedData}
+            columns={columns}
+            className="-striped -highlight"
+          />
         </div>
       </div>
     );
