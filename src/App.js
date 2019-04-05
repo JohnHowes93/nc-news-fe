@@ -59,6 +59,9 @@ class App extends Component {
             <ViewUser path="/users/:username" />
           </Router>
         </div>
+        <div className="readme">
+          <Link to="https://github.com/JohnHowes93/nc-news-fe">github</Link>
+        </div>
       </div>
     );
   }

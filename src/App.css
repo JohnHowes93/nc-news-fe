@@ -66,5 +66,9 @@ a:link {
 }
 .tableActions {
   width: 40%;
-  padding: 1vh;
+  padding: 1vh 8vw;
+}
+.readme {
+  text-align: left;
+  padding: 1vh 1vw;
 }
