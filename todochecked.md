@@ -8,11 +8,10 @@
 ### 'Must Have' User Stories
 
 6. As a hiring partner with no access to my laptop, I should be able to use the site on my mobile without sacrificing style or functionality.
-7. As a logged in user, I should be able to post a new article to a new topic.
-8. As a hiring parter, I should be able to follow the readme instructions to easily run the project locally.
-9. As a hiring parter, I should be able to find a link to the hosted version of the project in the readme.
-10. As a hiring parter, I should be able to find a link to the back-end repository of the project in the readme.
-11. As a hiring parter, I should be able to find a link to the hosted version of the back-end project in the readme.
+7. As a hiring parter, I should be able to follow the readme instructions to easily run the project locally.
+8. As a hiring parter, I should be able to find a link to the hosted version of the project in the readme.
+9. As a hiring parter, I should be able to find a link to the back-end repository of the project in the readme.
+10. As a hiring parter, I should be able to find a link to the hosted version of the back-end project in the readme.
 
 _**If time...**_
 
