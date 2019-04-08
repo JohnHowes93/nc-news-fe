@@ -10,6 +10,7 @@ import LoginForm from './components/LoginForm';
 import ErrorHandler from './components/ErrorHandler';
 import ViewUser from './components/ViewUser';
 import { ReactTableDefaults } from 'react-table';
+import ArticleAdder from './components/ArticleAdder';
 
 Object.assign(ReactTableDefaults, {
   defaultPageSize: 20,
@@ -57,6 +58,7 @@ class App extends Component {
             <PostNewArticle path="articles/create" user={user} />
             <ErrorHandler path="/error" />
             <ViewUser path="/users/:username" />
+            <ArticleAdder path="/articles/create" user={user} />
           </Router>
           <div className="readme">
             <Link to="https://github.com/JohnHowes93/nc-news-fe">
