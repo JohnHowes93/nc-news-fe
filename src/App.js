@@ -42,7 +42,7 @@ class App extends Component {
           </span>
           <span className="login">
             {user ? (
-              <Link to={`/users/${user}`}>{user}</Link>
+              <Link to={`/users/${user}`}>Logged in as {user}</Link>
             ) : (
               <LoginForm setUser={this.setUser} user={this.state.user} />
             )}
