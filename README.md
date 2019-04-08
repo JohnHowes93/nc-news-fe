@@ -28,7 +28,7 @@ Logged in users can
 - Vote on an article.
 - Vote on a comment.
 - Delete their own articles.
-- Delete any comment made on their articles.
+- Delete their own comments.
 
 ### How do I access it?
 
