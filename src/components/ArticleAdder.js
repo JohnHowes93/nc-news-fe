@@ -14,12 +14,20 @@ class ArticleAdder extends Component {
     article_id: '',
     topics: [{ slug: '' }],
     topicDescription: 'Topic Description',
-    newTopicDescription: ''
+    newTopicDescription: '',
+    user: null
   };
   componentDidMount() {
     getTopics().then(topics => {
-      this.setState({ topics: topics });
+      this.setState({ topics: topics, user: this.props.user });
     });
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState !== this.state) {
+      getTopics().then(topics => {
+        this.setState({ topics: topics, user: this.props.user });
+      });
+    }
   }
   render() {
     const {
@@ -27,7 +35,8 @@ class ArticleAdder extends Component {
       title,
       body,
       topics,
-      newTopicDescription
+      newTopicDescription,
+      user
     } = this.state;
     const existingTopics = topics.map(topic => {
       return topic.slug;
@@ -92,30 +101,32 @@ class ArticleAdder extends Component {
         </div>
       );
     }
-    return (
-      <div className="new-article">
-        <div className="topic-selector">
-          <div className="topic-text">
-            <p>
-              Select a topic for your post, or start typing to create a new
-              topic
-            </p>
+    if (user) {
+      return (
+        <div className="new-article">
+          <div className="topic-selector">
+            <div className="topic-text">
+              <p>
+                Select a topic for your post, or start typing to create a new
+                topic
+              </p>
+            </div>
+            <CreatableSelect
+              name="topicSelect"
+              onChange={this.handleTopicChange}
+              onInputChange={this.handleTopicInputChange}
+              options={createSearchOptions(topics)}
+              required
+              isClearable
+              style={{ width: '50%' }}
+              autosize={false}
+            />
+            {topicInfo}
           </div>
-          <CreatableSelect
-            name="topicSelect"
-            onChange={this.handleTopicChange}
-            onInputChange={this.handleTopicInputChange}
-            options={createSearchOptions(topics)}
-            required
-            isClearable
-            style={{ width: '50%' }}
-            autosize={false}
-          />
-          {topicInfo}
+          {articleForm}
         </div>
-        {articleForm}
-      </div>
-    );
+      );
+    } else return <p>log in to create a new article</p>;
   }
   handleInputChange = event => {
     event.preventDefault();
@@ -135,9 +146,9 @@ class ArticleAdder extends Component {
       body,
       selectedOption,
       topics,
-      newTopicDescription
+      newTopicDescription,
+      user
     } = this.state;
-    const { user } = this.props;
     const postBody = {
       title,
       body,

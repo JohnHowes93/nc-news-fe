@@ -11,10 +11,11 @@ const { getArticleById, deleteArticle } = require('../api');
 class MainArticleContainer extends Component {
   state = {
     article: {},
-    user: ''
+    user: '',
+    thumbsUpSubmitted: false,
+    thumbsDownSubmitted: false
   };
   componentDidMount() {
-    console.log(this.props);
     this.setState({ user: this.props.user });
     getArticleById(this.props.article_id)
       .then(article => {
