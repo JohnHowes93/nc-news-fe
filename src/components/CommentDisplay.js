@@ -8,12 +8,16 @@ moment().format();
 
 class CommentDisplayer extends Component {
   state = {
-    user: '',
-    comments: [],
-    comment: {}
+    user: null,
+    comments: []
   };
   render() {
+    console.log(this.state);
     const { comments, user } = this.state;
+    const shouldVotesBeDisabled = () => {
+      if (user === null) return true;
+      else return false;
+    };
     let deleteCommentButton = <div />;
     if (comments)
       return comments.map(comment => {
@@ -29,7 +33,7 @@ class CommentDisplayer extends Component {
               </button>
             </div>
           );
-        } else deleteCommentButton = <p />;
+        } else deleteCommentButton = <div />;
         return (
           <div key={comment.comment_id} className="single-comment">
             <div className="comment-header">
@@ -48,7 +52,8 @@ class CommentDisplayer extends Component {
                 type="button"
                 value="1"
                 name={comment.comment_id}
-                onClick={this.handleOnClick}
+                onClick={() => this.handleThumbsUpOnClick(comment)}
+                disabled={shouldVotesBeDisabled()}
               >
                 <span role="img" aria-label="thumbs up">
                   👍
@@ -58,7 +63,8 @@ class CommentDisplayer extends Component {
                 type="button"
                 value="-1"
                 name={comment.comment_id}
-                onClick={this.handleOnClick}
+                onClick={() => this.handleThumbsDownOnClick(comment)}
+                disabled={shouldVotesBeDisabled()}
               >
                 <span role="img" aria-label="thumbs down">
                   👎
@@ -78,24 +84,50 @@ class CommentDisplayer extends Component {
     });
   }
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.votes !== this.state.votes) {
-      getCommentsById(this.props.article_id).then(comments => {
-        this.setState({ comments });
-      });
-    }
     if (prevProps.user !== this.props.user) {
       this.setState({ user: this.props.user });
     }
   }
 
-  handleOnClick = event => {
-    const postBody = {
-      inc_votes: Number(event.currentTarget.value)
-    };
-    voteOnComment(postBody, event.currentTarget.name).then(votes => {
-      this.setState({ votes });
-    });
+  handleThumbsUpOnClick = selectedComment => {
+    if (this.state[selectedComment.comment_id] !== 'up') {
+      const newComment = { ...selectedComment };
+      if (this.state[selectedComment.comment_id] === 'down') {
+        newComment.votes = newComment.votes + 2;
+      } else {
+        newComment.votes = newComment.votes + 1;
+      }
+      const newArrayOfComments = this.state.comments.map(comment => {
+        if (comment.comment_id === selectedComment.comment_id) {
+          return newComment;
+        } else return comment;
+      });
+      this.setState({
+        comments: newArrayOfComments,
+        [selectedComment.comment_id]: 'up'
+      });
+      voteOnComment({ inc_votes: 1 }, selectedComment.comment_id);
+    }
   };
+  handleThumbsDownOnClick = selectedComment => {
+    if (this.state[selectedComment.comment_id] !== 'down') {
+      const newComment = { ...selectedComment };
+      if (this.state[selectedComment.comment_id] === 'up') {
+        newComment.votes = newComment.votes - 2;
+      } else newComment.votes = newComment.votes - 1;
+      const newArrayOfComments = this.state.comments.map(comment => {
+        if (comment.comment_id === selectedComment.comment_id) {
+          return newComment;
+        } else return comment;
+      });
+      this.setState({
+        comments: newArrayOfComments,
+        [selectedComment.comment_id]: 'down'
+      });
+      voteOnComment({ inc_votes: -1 }, selectedComment.comment_id);
+    }
+  };
+
   handleDelete = e => {
     deleteComment(e.target.value).then(() => {
       navigate(`/articles/${this.props.article_id}`);

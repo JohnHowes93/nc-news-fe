@@ -33,6 +33,7 @@ class CommentAdder extends Component {
                 onChange={this.handleInputChange}
                 rows={10}
                 cols={50}
+                required
               />
             </span>
             <div className="new-comment-submit">
