@@ -17,7 +17,7 @@ class CommentDisplayer extends Component {
     let deleteCommentButton = <div />;
     if (comments)
       return comments.map(comment => {
-        if (comment.author === user)
+        if (comment.author === user) {
           deleteCommentButton = (
             <div>
               <button
@@ -29,6 +29,7 @@ class CommentDisplayer extends Component {
               </button>
             </div>
           );
+        } else deleteCommentButton = <p />;
         return (
           <div key={comment.comment_id} className="single-comment">
             <div className="comment-header">
@@ -81,6 +82,9 @@ class CommentDisplayer extends Component {
       getCommentsById(this.props.article_id).then(comments => {
         this.setState({ comments });
       });
+    }
+    if (prevProps.user !== this.props.user) {
+      this.setState({ user: this.props.user });
     }
   }
 

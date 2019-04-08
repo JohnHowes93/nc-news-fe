@@ -6,11 +6,18 @@ class CommentAdder extends Component {
   state = {
     article_id: 0,
     author: 0,
-    body: ''
+    body: '',
+    user: null
   };
   componentDidMount() {
     const { article_id, user } = this.props;
     this.setState({ article_id, author: user });
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.user !== this.state.user) {
+      const { user } = this.props;
+      this.setState({ author: user });
+    }
   }
   render() {
     const { body } = this.state;
