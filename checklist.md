@@ -29,7 +29,6 @@ Firstly I think your efforts to try something a little different here with react
 
 ## Functionality
 
-- [NO] A way to log out
 - [NA - no deletion!!] Can only delete comments of logged in user
 - [NO DELETION] Deleted comments don’t re-appear on re-render/refresh
 - [YES] Can post an article

@@ -42,7 +42,10 @@ class App extends Component {
           </span>
           <span className="login">
             {user ? (
-              <Link to={`/users/${user}`}>Logged in as {user}</Link>
+              <div>
+                <Link to={`/users/${user}`}>Logged in as {user}</Link>{' '}
+                <button onClick={this.handleLogOut}>Log Out </button>
+              </div>
             ) : (
               <LoginForm setUser={this.setUser} user={this.state.user} />
             )}
@@ -74,6 +77,9 @@ class App extends Component {
   };
   setUser = user => {
     this.setState({ user });
+  };
+  handleLogOut = () => {
+    this.setState({ user: null });
   };
 }
 
