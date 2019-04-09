@@ -110,3 +110,16 @@ export const createNewTopic = postBody => {
     })
     .catch(err => console.log('caught error: ', err));
 };
+
+export const getUserByUsername = username => {
+  return axios
+    .get(`${baseUrl}users/${username}`)
+    .then(returnedUser => {
+      if (returnedUser) {
+        return returnedUser;
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
