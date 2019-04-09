@@ -24,8 +24,6 @@ Firstly I think your efforts to try something a little different here with react
 - [~] Responsive design
   - checkout flexbox for article display for flexibiloity
   - definitely a good start here but could be improved. Think about utilising media queries to tweek the css you already have to make it fit the phone
-- [YES - In most cases] Content legible (not too wide, obstructed, etc)
-  - less responsiveness means some of the content is rendered outside of the frame of the window itself.
 - [~] No errors in the console
   - although there are no errors, there a quite a few console.logs! Don't forget to remove
 
@@ -43,14 +41,6 @@ New comments don't appear on posting? It is really important to see some visual 
     - Bad URL for users/username should 404
     - /gibberish - does not handle??
     - /article/gibberish - does handle!! although need a better error page
-  - Login: (Bad username / No username)
-    - you don't handle a bad username????
-    - NO BIGGY but could do with some responsiveness when no username passed
-  - Post comment: (No text in comment body / Can you post without logging in?)
-    - GOOD!
-  - Post article: (No text in article body / No title / No topic selected / Can you post without logging in?)
-    - You should not allow anyone to post if no log in - I managed it!
-    - GOOD form handling to prevent empty posting!!
 
 ## Code
 
