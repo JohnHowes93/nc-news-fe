@@ -4,8 +4,6 @@
 
 Firstly I think your efforts to try something a little different here with react-table should be commended. This works well although I think more could be done to make the styles a little more appealing. It definitely acheives the functionality that is needed for the app.
 
-- If you can find a logo to replace the react logo, please do it!
-- More importantly, change the Title aspect of the html and make it your own.
 - Take out all console.logs and unecessary commentary.
 
 - [YES] provides general info about app
