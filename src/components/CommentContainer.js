@@ -15,7 +15,9 @@ class CommentContainer extends Component {
       commentDisplay = <CommentDisplayer article_id={article_id} user={user} />;
     }
     if (user) {
-      addComment = <CommentAdder user={user} article_id={article_id} />;
+      addComment = (
+        <CommentAdder user={user} article_id={article_id} comments={comments} />
+      );
     }
     return (
       <div>

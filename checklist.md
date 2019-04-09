@@ -1,5 +1,7 @@
 ## README
 
+// FIX PROBLEMS POSTING COMMENTS, ADDING NEW COMMENT SHOULD SHOW IMMEDIATELY
+
 Firstly I think your efforts to try something a little different here with react-table should be commended. This works well although I think more could be done to make the styles a little more appealing. It definitely acheives the functionality that is needed for the app.
 
 - If you can find a logo to replace the react logo, please do it!
@@ -29,11 +31,7 @@ Firstly I think your efforts to try something a little different here with react
 
 ## Functionality
 
-- [NA - no deletion!!] Can only delete comments of logged in user
 - [NO DELETION] Deleted comments don’t re-appear on re-render/refresh
-- [YES] Can post an article
-  - Love the response when posting an article. Use this idea to render the comments
-- [NO] Users page
 
 New comments don't appear on posting? It is really important to see some visual feedback from posting a new comment. setState with it!
 

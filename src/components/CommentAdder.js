@@ -14,8 +14,8 @@ class CommentAdder extends Component {
     this.setState({ article_id, author: user });
   }
   componentDidUpdate(prevProps, prevState) {
+    const { user } = this.props;
     if (prevState.user !== this.state.user) {
-      const { user } = this.props;
       this.setState({ author: user });
     }
   }
@@ -48,10 +48,6 @@ class CommentAdder extends Component {
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value });
   };
-  handleTopicChange = selectedOption => {
-    this.setState({ selectedOption: selectedOption.value });
-  };
-
   handleSubmit = event => {
     event.preventDefault();
     const { body, article_id, author } = this.state;
@@ -61,9 +57,7 @@ class CommentAdder extends Component {
       username: author
     };
     postComment(postBody, article_id).then(comment => {
-      navigate(`/articles/${comment.article_id}`, {
-        state: { isNewFromUser: true }
-      });
+      navigate(`/articles/${comment.article_id}`, {});
     });
   };
 }

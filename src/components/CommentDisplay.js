@@ -21,59 +21,63 @@ class CommentDisplayer extends Component {
     let deleteCommentButton = <div />;
     if (comments)
       return comments.map(comment => {
-        if (comment.author === user) {
-          deleteCommentButton = (
-            <div>
-              <button
-                type="button"
-                onClick={this.handleDelete}
-                value={comment.comment_id}
-              >
-                Delete This Comment
-              </button>
+        if (comment) {
+          if (comment.author === user) {
+            deleteCommentButton = (
+              <div>
+                <button
+                  type="button"
+                  onClick={() => this.handleDelete(comment)}
+                  value={comment.comment_id}
+                >
+                  Delete This Comment
+                </button>
+              </div>
+            );
+          }
+        } else deleteCommentButton = <div />;
+        if (comment) {
+          return (
+            <div key={comment.comment_id} className="single-comment">
+              <div className="comment-header">
+                <span className="comment-created_at">
+                  Posted {moment(comment.created_at).fromNow()}
+                </span>
+                <span />
+                <span className="comment-author">
+                  <Link to={`/users/${comment.author}`}>{comment.author}</Link>
+                </span>
+              </div>
+              <article className="comment-body">{comment.body}</article>
+              <div className="actions">
+                {comment.votes}{' '}
+                <button
+                  type="button"
+                  value="1"
+                  name={comment.comment_id}
+                  onClick={() => this.handleThumbsUpOnClick(comment)}
+                  disabled={shouldVotesBeDisabled()}
+                >
+                  <span role="img" aria-label="thumbs up">
+                    👍
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  value="-1"
+                  name={comment.comment_id}
+                  onClick={() => this.handleThumbsDownOnClick(comment)}
+                  disabled={shouldVotesBeDisabled()}
+                >
+                  <span role="img" aria-label="thumbs down">
+                    👎
+                  </span>
+                </button>
+              </div>
+              {deleteCommentButton}
             </div>
           );
-        } else deleteCommentButton = <div />;
-        return (
-          <div key={comment.comment_id} className="single-comment">
-            <div className="comment-header">
-              <span className="comment-created_at">
-                Posted {moment(comment.created_at).fromNow()}
-              </span>
-              <span />
-              <span className="comment-author">
-                <Link to={`/users/${comment.author}`}>{comment.author}</Link>
-              </span>
-            </div>
-            <article className="comment-body">{comment.body}</article>
-            <div className="actions">
-              {comment.votes}{' '}
-              <button
-                type="button"
-                value="1"
-                name={comment.comment_id}
-                onClick={() => this.handleThumbsUpOnClick(comment)}
-                disabled={shouldVotesBeDisabled()}
-              >
-                <span role="img" aria-label="thumbs up">
-                  👍
-                </span>
-              </button>
-              <button
-                type="button"
-                value="-1"
-                name={comment.comment_id}
-                onClick={() => this.handleThumbsDownOnClick(comment)}
-                disabled={shouldVotesBeDisabled()}
-              >
-                <span role="img" aria-label="thumbs down">
-                  👎
-                </span>
-              </button>
-            </div>
-            {deleteCommentButton}
-          </div>
-        );
+        }
       });
     else return <div />;
   }
@@ -128,10 +132,18 @@ class CommentDisplayer extends Component {
     }
   };
 
-  handleDelete = e => {
-    deleteComment(e.target.value).then(() => {
-      navigate(`/articles/${this.props.article_id}`);
+  handleDelete = selectedComment => {
+    const newArrayOfComments = this.state.comments.map(comment => {
+      if (comment) {
+        if (comment.comment_id !== selectedComment.comment_id) {
+          return comment;
+        }
+      }
     });
+    this.setState({
+      comments: newArrayOfComments
+    });
+    deleteComment(selectedComment.comment_id).catch(err => console.log(err));
   };
 }
 
