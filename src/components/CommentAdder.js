@@ -51,14 +51,14 @@ class CommentAdder extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { body, article_id, author } = this.state;
+    const { handleAddComment } = this.props;
     const postBody = {
       body,
       article_id,
       username: author
     };
-    postComment(postBody, article_id).then(comment => {
-      navigate(`/articles/${comment.article_id}`, {});
-    });
+    postComment(postBody, article_id).catch(err => console.log(err));
+    handleAddComment(postBody);
   };
 }
 

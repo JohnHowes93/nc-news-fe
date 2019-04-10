@@ -90,6 +90,11 @@ class CommentDisplayer extends Component {
     if (prevProps.user !== this.props.user) {
       this.setState({ user: this.props.user });
     }
+    if (prevProps.newComment !== this.props.newComment) {
+      this.setState({
+        comments: [...this.state.comments, this.props.newComment]
+      });
+    }
   }
 
   handleThumbsUpOnClick = selectedComment => {
