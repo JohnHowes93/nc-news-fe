@@ -12,7 +12,6 @@ class CommentDisplayer extends Component {
     comments: []
   };
   render() {
-    console.log(this.state);
     const { comments, user } = this.state;
     const shouldVotesBeDisabled = () => {
       if (user === null) return true;
