@@ -36,9 +36,16 @@ Visit this link : https://nc-news-john-howes.netlify.com/
 
 Or to run the project locally
 
+- Install node v11.6.0 of higher
 - Fork this repo
-- Install dependencies
-- Run this command in terminal
+- Use git clone to clone the project to your machine
+- Navigate to the new folder and run this command in terminal to install dependencies
+
+```
+npm install
+```
+
+- Run this command in terminal to start the server
 
 ```
 npm start

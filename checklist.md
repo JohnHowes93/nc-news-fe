@@ -6,12 +6,6 @@ Firstly I think your efforts to try something a little different here with react
 
 - Take out all console.logs and unecessary commentary.
 
-- [YES] provides general info about app
-
-  - be as explicitly direct with your instructions as possible...
-    - you need to run `npm install` to run dependancies
-    - mention the version of node required to be installed on the computer as a dependancy
-
 - [NO] clear instructions on how to run locally
   - do you need a database?? do i need to seed it?
   - what commands can you run to set up the development environment??
