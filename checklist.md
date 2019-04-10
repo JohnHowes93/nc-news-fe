@@ -25,12 +25,6 @@ Firstly I think your efforts to try something a little different here with react
 - [~] No errors in the console
   - although there are no errors, there a quite a few console.logs! Don't forget to remove
 
-## Functionality
-
-- [NO DELETION] Deleted comments don’t re-appear on re-render/refresh
-
-New comments don't appear on posting? It is really important to see some visual feedback from posting a new comment. setState with it!
-
 ## Error Handling
 
 - [NO] Error pages
