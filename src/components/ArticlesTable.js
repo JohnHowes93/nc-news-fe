@@ -92,9 +92,6 @@ class ArticlesTable extends Component {
       this.setState({ sort: 1 });
     }
   };
-  handleToggle = event => {
-    console.log(event.target.value);
-  };
 
   handleChange = sortBy => {
     this.setState({ sortBy });
