@@ -1,17 +1,13 @@
+import { navigate } from '@reach/router';
 const axios = require('axios');
 const baseUrl = 'https://nc-news-john-howes.herokuapp.com/api/';
 
 export const getArticleById = articleId => {
-  return axios
-    .get(`${baseUrl}articles/${articleId}`)
-    .then(function(response) {
-      if (response.data.article) {
-        return response.data.article;
-      }
-    })
-    .catch(function(error) {
-      throw error;
-    });
+  return axios.get(`${baseUrl}articles/${articleId}`).then(function(response) {
+    if (response.data.article) {
+      return response.data.article;
+    }
+  });
 };
 
 export const getCommentsById = articleId => {
@@ -21,7 +17,7 @@ export const getCommentsById = articleId => {
       return response.data.comments;
     })
     .catch(function(error) {
-      console.log(error);
+      navigate(`/error`, { error });
     });
 };
 

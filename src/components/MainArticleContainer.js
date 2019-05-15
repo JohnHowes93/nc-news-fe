@@ -21,7 +21,11 @@ class MainArticleContainer extends Component {
       .then(article => {
         this.setState({ article });
       })
-      .catch(err => navigate('/error', { error: err }));
+      .catch(err => {
+        console.log(err.response.data.msg);
+        const errMessge = err.toString();
+        navigate('/error', { state: { err: errMessge } });
+      });
   }
   handleOnClick = event => {
     const postBody = {
